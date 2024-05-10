@@ -19,6 +19,9 @@ Navigate into the cloned repository directory and start the Docker containers us
 
 ```
 cd bedrock-docker-training
+cd wp
+make config
+cd ..
 docker-compose up -d
 ```
 
