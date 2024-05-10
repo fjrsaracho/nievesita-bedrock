@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  nievesita-wp:
+    container_name: nievesita-wp
+    build: 
+      context: ./wp
+      dockerfile: Dockerfile
+    ports: ['80:80']
+    volumes: ['./wp:/var/www/html']
+    networks: ['nievesita-wp']
+  nievesita-wp-mysql:
+    container_name: nievesita-wp-mysql
+    image: mariadb:11.3
+    ports: ['3306:3306']
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: nievesitadb
+      MARIADB_USER: nievesitauser
+      MARIADB_PASSWORD: nievesitapass
+    volumes: ['./mariadb-data:/var/lib/mysql']
+    networks: ['nievesita-wp']
+networks:
+  nievesita-wp:
